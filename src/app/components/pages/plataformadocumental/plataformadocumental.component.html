@@ -1,0 +1,232 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper animated fadeIn">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Plataforma Documental</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item active">Plataforma Documental</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box Estrategicos -->
+        <div class="card card-secondary">
+            <div class="card-header">
+                <h3 class="card-title">Macro Procesos Estrategicos</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-2 col-9">
+                        <button (click)="ngOnInit()" *ngIf="sucesorEstrategico !=0" type="button" class="btn btn-warning">
+                            <i class="fas fa-arrow-left mr-1"></i>
+                            Regresar
+                        </button>&nbsp;
+                        <button *ngIf="sucesorOperativo !=0" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-Plataforma">
+                            <i class="fas fa-folder-plus mr-1"></i>
+                            Crear
+                        </button>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-lg-3 col-6" *ngFor="let item of foldersEstrategicos">
+                        <!-- small card -->
+                        <div class="small-box bg-secondary">
+                            <div class="inner">
+                                <h3>{{item.id}}</h3>
+
+                                <p>{{item.descripcion}}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-folder"></i>
+                            </div>
+                            <a (click)="getFolderById(item.id)" class="small-box-footer">
+                                Abrir 
+                                <i class="fas fa-arrow-circle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+        <!-- Default box Operativo-->
+        <div class="card card-danger">
+            <div class="card-header">
+                <h3 class="card-title">Macro Procesos Operativos</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-2 col-6">
+                        <button (click)="ngOnInit()" *ngIf="sucesorOperativo !=0" type="button" class="btn btn-warning">
+                            <i class="fas fa-arrow-left mr-1"></i>
+                            Regresar
+                        </button>&nbsp;
+                        <button *ngIf="sucesorOperativo !=0" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-Plataforma">
+                            <i class="fas fa-folder-plus mr-1"></i>
+                            Crear
+                        </button>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-lg-3 col-6" *ngFor="let item of foldersOperativos">
+                        <!-- small card -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>{{item.id}}</h3>
+
+                                <p>{{item.descripcion}}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-folder"></i>
+                            </div>
+                            <a (click)="getFolderById(item.id)" class="small-box-footer">
+                                    Abrir 
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+        <!-- Default box de soporte-->
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Macro Procesos de Soporte</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-2 col-6">
+                        <button (click)="ngOnInit()" *ngIf="sucesorSoporte !=0" type="button" class="btn btn-warning">
+                            <i class="fas fa-arrow-left mr-1"></i>
+                            Regresar
+                        </button>&nbsp;
+                        <button *ngIf="sucesorOperativo !=0" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-Plataforma">
+                            <i class="fas fa-folder-plus mr-1"></i>
+                            Crear
+                        </button>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-lg-3 col-6" *ngFor="let item of foldersSoporte">
+                        <!-- small card -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{item.id}}</h3>
+
+                                <p>{{item.descripcion}}</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-folder"></i>
+                            </div>
+                            <a (click)="getFolderById(item.id)" class="small-box-footer">
+                                    Abrir 
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal-Plataforma" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Informacion de la Carpeta</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <form #formplataforma="ngForm" autocomplete="off">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Nombre de la Carpeta</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Nombres" required name="nombre">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Apellidos</label>
+                                <select class="form-control" [(ngModel)]="opcionSeleccionado" (change)="capturar()" name="opcionSeleccionado" style="width: 100%;">
+                                    <option selected="selected" value="0">Selecciona una opción</option>
+                                    <option value="{{dato.id}}" *ngFor="let dato of datos">
+                                        {{dato.message}}
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

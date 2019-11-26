@@ -1,0 +1,120 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper animated fadeIn">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Documento</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item active">Documentos</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card card-secondary">
+            <div class="card-header">
+                <h3 class="card-title">Editor de Documento</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                      <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                      <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-2 col-6">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-Plataforma">
+                            <i class="fas fa-save mr-1"></i>
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+                <hr/>
+                <div class="demo-container" style="width: auto;">
+                    <dx-html-editor>
+                        <dxo-toolbar>
+                            <dxi-item formatName="undo"></dxi-item>
+                            <dxi-item formatName="redo"></dxi-item>
+                            <dxi-item formatName="separator"></dxi-item>
+                            <dxi-item formatName="size" [formatValues]="['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt']"></dxi-item>
+                            <dxi-item formatName="font" [formatValues]="['Arial', 'Courier New', 'Georgia', 'Impact', 'Lucida Console', 'Tahoma', 'Times New Roman', 'Verdana']"></dxi-item>
+                            <dxi-item formatName="separator"></dxi-item>
+                            <dxi-item formatName="bold"></dxi-item>
+                            <dxi-item formatName="italic"></dxi-item>
+                            <dxi-item formatName="strike"></dxi-item>
+                            <dxi-item formatName="underline"></dxi-item>
+                            <dxi-item formatName="separator"></dxi-item>
+                            <dxi-item formatName="alignLeft"></dxi-item>
+                            <dxi-item formatName="alignCenter"></dxi-item>
+                            <dxi-item formatName="alignRight"></dxi-item>
+                            <dxi-item formatName="alignJustify"></dxi-item>
+                            <dxi-item formatName="separator"></dxi-item>
+                            <dxi-item formatName="header" [formatValues]="[false, 1, 2, 3, 4, 5]"></dxi-item>
+                            <dxi-item formatName="separator"></dxi-item>
+                            <dxi-item formatName="orderedList"></dxi-item>
+                            <dxi-item formatName="bulletList"></dxi-item>
+                            <dxi-item formatName="separator"></dxi-item>
+                            <dxi-item formatName="color"></dxi-item>
+                            <dxi-item formatName="background"></dxi-item>
+                            <dxi-item formatName="separator"></dxi-item>
+                            <dxi-item formatName="link"></dxi-item>
+                            <dxi-item formatName="image"></dxi-item>
+                            <dxi-item formatName="separator"></dxi-item>
+                            <dxi-item formatName="clear"></dxi-item>
+                            <dxi-item formatName="codeBlock"></dxi-item>
+                            <dxi-item formatName="blockquote"></dxi-item>
+                        </dxo-toolbar>
+                        <dxo-media-resizing [enabled]=true>
+                        </dxo-media-resizing>
+                    </dx-html-editor>
+
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                Footer
+            </div>
+            <!-- /.card-footer-->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal-Dashboard">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Large Modal</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

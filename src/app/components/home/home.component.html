@@ -1,0 +1,324 @@
+<div class="wrapper animated fadeIn">
+
+    <!-- HEADER -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
+
+        <!-- SEARCH FORM -->
+        <form class="form-inline ml-3">
+            <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                          <i class="fas fa-search"></i>
+                        </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Right navbar links (click)="goToLogin()"-->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:4200/login" title="Cerrar Sesión" (click)="usuario = ''">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.HEADER -->
+
+    <!-- NAVBAR -->
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a [routerLink]="['/home', usuario]" class="brand-link">
+            <img src="assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <span class="brand-text font-weight-light">GRTecnologia</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="assets/dist/img/user.png" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">{{user[0].nombre}}</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+                    <li class="nav-item" (click)="activo='dashboard'">
+                        <a class="nav-link" [ngClass]="{'active': activo == 'dashboard'}" [routerLink]="['/home', usuario,{outlets:{home:['dashboard',user[0].id]}}]">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item" (click)="activo='plataforma'">
+                        <a class="nav-link" [ngClass]="{'active': activo == 'plataforma'}" [routerLink]="['/home', usuario,{outlets:{home:['plataformadocumental']}}]">
+                            <i class="nav-icon fas fa-folder"></i>
+                            <p>
+                                Plataforma Documental
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item has-treeview" (click)="activo='documentos'">
+                        <a class="nav-link" [ngClass]="{'active': activo == 'documentos'}">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>
+                                Documentos
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLinkActive="active" [routerLink]="['/home', usuario,{outlets:{home:['documentos', 'documento']}}]">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Documento</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLinkActive="active" [routerLink]="['/home', usuario,{outlets:{home:['documentos', 'flujograma']}}]">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Flujograma</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview" (click)="activo='casos'">
+                        <a class="nav-link" [ngClass]="{'active': activo == 'casos'}">
+                            <i class="nav-icon fas fa-question-circle"></i>
+                            <p>
+                                Casos
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLinkActive="active" [routerLink]="['/home', usuario,{outlets:{home:['casos', 'nuevocaso']}}]">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Nuevo Caso</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLinkActive="active" [routerLink]="['/home', usuario,{outlets:{home:['casos', 'administrarcasos']}}]">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Administracion de Casos</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview" (click)="activo='proyectos'">
+                        <a class="nav-link" [ngClass]="{'active': activo == 'proyectos'}">
+                            <i class="nav-icon fas fa-project-diagram"></i>
+                            <p>
+                                Proyectos
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLinkActive="active" [routerLink]="['/home', usuario,{outlets:{home:['proyecto', 'nuevoproyecto']}}]">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Crear Proyecto</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="['/home', usuario,{outlets:{home:['proyecto', 'administrarActividades']}}]">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Actividades del Proyecto</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-bullhorn"></i>
+                            <p>
+                                Colaboracion
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Crear Comunicado</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Notificaciones</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-frown"></i>
+                            <p>
+                                No Conformidades
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Crear Inconformidad</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Admin. Inconformidades</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-check-circle"></i>
+                            <p>
+                                Acciones Correctivas
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Crear Accion</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Admin. Acciones</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview" (click)="activo='catalogo'">
+                        <a [ngClass]="{'active': activo == 'catalogo'}" class="nav-link">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                                Catalogos Basicos
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a [routerLink]="['/home', usuario,{outlets:{home:['catalogo','empleados']}}]" routerLinkActive="active" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Empleados</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a [routerLink]="['/home', usuario,{outlets:{home:['catalogo','empresas']}}]" routerLinkActive="active" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Empresas</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-invoice"></i>
+                            <p>
+                                Reportes
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item has-treeview" (click)="activo='seguridad'">
+                        <a class="nav-link" [ngClass]="{'active': activo == 'seguridad'}">
+                            <i class="nav-icon fas fa-lock"></i>
+                            <p>
+                                Seguridad
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/home', usuario,{outlets:{home:['seguridad','usuario', usuario]}}]" routerLinkActive="active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Usuarios</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/home', usuario,{outlets:{home:['seguridad','roles']}}]" routerLinkActive="active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Roles</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="http://localhost:4200/login" class="nav-link" (click)="usuario = ''">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Cerrar Sesion
+                            </p>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- /.NAVBAR -->
+
+    <!-- BODY -->
+    <router-outlet name="home"></router-outlet>
+    <!-- /.BODY -->
+
+    <!-- FOOTER -->
+
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            All rights reserved.
+        </div>
+        <strong>Copyright &copy; 1449-Fundam. Admon. Tecn. Informac. SAP V 2019.</strong>
+    </footer>
+    <!-- /.FOOTER -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+</div>

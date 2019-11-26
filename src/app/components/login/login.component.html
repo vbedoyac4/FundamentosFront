@@ -1,0 +1,65 @@
+<div class="modal-backdrop fade" [style.display]="showModal ? 'block' : 'none'"></div>
+<div id="wait" class="modal" role="dialog" [style.display]="showModal ? 'block' : 'none'">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border:none">
+            <div>
+                <div id="" style="position:absolute;top:50%;left:50%;padding:2px;">
+                    <img src="../../../assets//load.gif" width="64" height="64" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fondo login-page animated fadeIn">
+    <div class="login-box">
+        <div class="login-logo">
+            <a [routerLink]="['/login']" style="color: #ffffff;"><b>GR</b>Tecnologia</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="fondo-transparente-cont-opaco">
+            <div class="card-body">
+                <p class="login-box-msg">Inicia sesión para comenzar tu sesión</p>
+
+                <form #formLogin="ngForm" (ngSubmit)="onSubmit();" autocomplete="off">
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" [ngClass]="{' is-invalid': credencialCorrecta == false}" autocomplete="off" placeholder="Usuario" required name="username" #username="ngModel" [(ngModel)]="usuario.username">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" [ngClass]="{'is-invalid': credencialCorrecta == false}" autocomplete="off" placeholder="Contraseña" equired name="password" #password="ngModel" [(ngModel)]="usuario.password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p *ngIf="credencialCorrecta == false" class="text-danger text-center" visible>Usuario o Contraseña Incorrecta.</p>
+
+                    <div class="social-auth-links text-center mb-3">
+                        <button type="submit" class="btn btn-block btn-primary" [ngClass]="{'disabled': showModal}">
+                            <i class="fas fa-sign-in-alt mr-2"></i> Iniciar Sesion
+                        </button>
+                    </div>
+
+                </form>
+                <!-- /.social-auth-links 
+    
+                    <p class="mb-1">
+                        <a href="#">I forgot my password</a>
+                    </p>
+                    <p class="mb-0">
+                        <a href="#" class="text-center">Register a new membership</a>
+                    </p>-->
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+</div>

@@ -1,0 +1,128 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper animated fadeIn">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Roles</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item active">Seguridad</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card card-secondary">
+            <div class="card-header">
+                <h3 class="card-title">Administracion de Roles</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal" data-target="#modal-Roles" (click)="editRol = false" (click)="limparCampos()">
+                    <i class="fas fa-plus mr-2"></i>
+                    Crear Rol
+                </button>
+
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>IdRol</th>
+                                <th>Rol</th>
+                                <th>Departamento</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of getAllRoles">
+                            <tr>
+                                <td>{{item.idroles}}</td>
+                                <td>{{item.rol}}</td>
+                                <td>{{item.Departamento}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm" title="Editar Usuario" (click)="getRolById(item.idroles)" data-toggle="modal" data-target="#modal-Roles">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                Footer
+            </div>
+            <!-- /.card-footer-->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal-Roles" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Informacion del Rol</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form #formRoles="ngForm" autocomplete="off">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Descripcion del Rol</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Descripcion del Rol" required name="rol" #rol="ngModel" [(ngModel)]="roles.rol" [ngClass]="{'is-invalid': CamposVacios === true}">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Departamento</label>
+                                <select class="form-control" [(ngModel)]="roles.deptoid" name="deptoid" style="width: 100%;" [ngClass]="{'is-invalid': CamposVacios === true}">
+                                    <option selected="selected" value="0" disabled>Selecciona una opción: </option>
+                                    <option value="{{item.IdDepartamento}}" *ngFor="let item of getAllDeptos">
+                                        {{item.Departamento}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="editRol ? updateRol() : onSaveRoles()">Guardar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

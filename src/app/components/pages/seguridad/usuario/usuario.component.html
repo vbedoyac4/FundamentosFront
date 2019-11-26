@@ -1,0 +1,200 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper animated fadeIn">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Usuarios</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item active">Seguridad</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card card-secondary">
+            <div class="card-header">
+                <h3 class="card-title">Administracion de Usuarios</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal" data-target="#modal-Usuario" (click)="limparCampos()" (click)="editUser = false">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Crear Usuario
+                </button>
+
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Usuario</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let item of users">
+                            <tr>
+                                <td>{{item.Nombre}}</td>
+                                <td>{{item.username}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.rol}}</td>
+                                <td>{{item.estado}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm" title="Editar Usuario" (click)="getUserById(item.id, item.deptoid)" data-toggle="modal" data-target="#modal-Usuario">
+                                        <i class="fas fa-user-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <!--<tbody>
+                            <tr>
+                                <td>German Velasquez</td>
+                                <td>gdvs</td>
+                                <td>gdvs1997@gmail.com</td>
+                                <td>A</td>
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm" title="Editar Usuario">
+                                                <i class="fas fa-user-edit"></i>
+                                            </button> &nbsp;
+                                    <button type="button" class="btn btn-info btn-sm" title="Cambiar Contraseña">
+                                                <i class="fas fa-lock"></i>
+                                            </button>
+                                </td>
+                            </tr>
+                        </tbody>-->
+                    </table>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                Footer
+            </div>
+            <!-- /.card-footer-->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal-Usuario">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Informacion del Usuario</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form #formUsuario="ngForm" autocomplete="off">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Departamento</label>
+                                <select class="form-control" [(ngModel)]="DeptoId" (change)="getRolesByDeptoId()" name="DeptoId" style="width: 100%;" [ngClass]="{'is-invalid': CamposVacios === true}">
+                                    <option selected="selected" value="0" disabled>Selecciona una opción: </option>
+                                    <option value="{{item.IdDepartamento}}" *ngFor="let item of getAlldepartamento">
+                                                    {{item.Departamento}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Rol</label>
+                                <select class="form-control" [(ngModel)]="usuario.rolid" name="rolid" style="width: 100%;" [ngClass]="{'is-invalid': CamposVacios === true}">
+                                    <option selected="selected" value="0" disabled>Selecciona una opción: </option>
+                                    <option value="{{item.idroles}}" *ngFor="let item of getAllroles">
+                                                    {{item.rol}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Nombres</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Nombres" required name="nombre" #nombre="ngModel" [(ngModel)]="usuario.nombre" [ngClass]="{'is-invalid': CamposVacios === true}">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Apellidos</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Apellidos" required name="apellido" #apellido="ngModel" [(ngModel)]="usuario.apellido" [ngClass]="{'is-invalid': CamposVacios === true}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Correo</label>
+                                <input type="email" autocomplete="off" class="form-control" placeholder="Correo" required name="email" #email="ngModel" [(ngModel)]="usuario.email" [ngClass]="{'is-invalid': CamposVacios === true}">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Usuario </label>
+                                <input autocomplete="off" type="text" class="form-control" placeholder="Usuario" required name="username" #username="ngModel" [(ngModel)]="usuario.username" [ngClass]="{'is-invalid': CamposVacios === true}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input autocomplete="off" type="password" class="form-control" placeholder="Contraseña" required name="password" #password="ngModel" [(ngModel)]="usuario.password" [ngClass]="{'is-invalid': CamposVacios === true, 'is-warning': CoincideContrasenias === false}">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Confirmar Contraseña </label>
+                                <input type="password" autocomplete="off" class="form-control" placeholder="Confirmar Contraseña" required name="confirmarContasenia" [(ngModel)]="ConfirmarContrasenia" [ngClass]="{'is-invalid': CamposVacios === true, 'is-warning': CoincideContrasenias === false}">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="editUser ? updateUser() : onSaveUser()">Guardar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

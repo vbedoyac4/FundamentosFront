@@ -1,0 +1,245 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper animated fadeIn">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Creacion de Casos</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item active">Casos</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card card-secondary">
+            <div class="card-header">
+                <h3 class="card-title">Casos Creados</h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal" data-target="#modal-Usuario">
+                    <i class="fas fa-plus-circle mr-1"></i>
+                    Crear Caso
+                </button>
+
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Ticket Id</th>
+                                <th>Tipo de Caso</th>
+                                <th>Asunto</th>
+                                <th>Estado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <!--<tbody *ngFor="let item of users">
+                            <tr>
+                                <td>{{item.Nombre}}</td>
+                                <td>{{item.username}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.estado}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm" title="Editar Usuario" (click)="getUserById(item.id)" data-toggle="modal" data-target="#modal-Usuario">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>-->
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Solicitud</td>
+                                <td>Elaboracion de Flujograma para el depto. de RR. HH.</td>
+                                <td>En Espera</td>
+                                <td>
+                                    <button type="button" class="btn btn-success btn-sm" title="Editar Caso">
+                                        <i class="fas fa-edit"></i>
+                                    </button>&nbsp;
+                                    <button type="button" class="btn btn-info btn-sm" title="Ver Detalles">
+                                        <i class="fas fa-search"></i>
+                                    </button>&nbsp;
+                                    <button type="button" class="btn btn-secondary btn-sm" title="Comentarios">
+                                        <i class="fas fa-comments"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                Footer
+            </div>
+            <!-- /.card-footer-->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal-Usuario" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Informacion del Caso</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <form #formUsuario="ngForm" autocomplete="off">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Codigo de Usuario</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Codigo de Usuario" required name="email" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Nombre del Solicitante</label>
+                                <input autocomplete="off" type="text" class="form-control" placeholder="Nombre del Solicitante" required name="username" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Departamento</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Departamento" required name="departamento" readonly>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Perfil</label>
+                                <input autocomplete="off" type="text" class="form-control" placeholder="Perfil" required name="perfil" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Tipo Caso</label>
+                                <select class="form-control" [(ngModel)]="ModeloCasos.TipoCasoId" name="TipoCasoId" style="width: 100%;" disabled>
+                                    <option selected="selected" value="0" disabled>Selecciona una opción: </option>
+                                    <option value="{{item.IdTipoCaso}}" *ngFor="let item of ListatipoCaso">
+                                        {{item.TipoCaso}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Tipo Solicitud</label>
+                                <select class="form-control" [(ngModel)]="ModeloCasos.TipoSolicitudId" name="TipoSolicitudId" style="width: 100%;">
+                                    <option selected="selected" value="0" disabled>Selecciona una opción: </option>
+                                    <option value="{{item.id}}" *ngFor="let item of ListatipoSolicitud">
+                                        {{item.descripcion}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Prioridad</label>
+                                <select class="form-control" [(ngModel)]="ModeloCasos.PrioridadId" name="PrioridadId" style="width: 100%;">
+                                        <option selected="selected" value="0" disabled>Selecciona una opción: </option>
+                                        <option value="{{item.id}}" *ngFor="let item of Listaprioridad">
+                                            {{item.descripcion}}
+                                        </option>
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Fecha Requerida</label>
+                                <div class="input-group">
+                                    <input class="form-control" name="dp" [(ngModel)]="FechaRequerida" ngbDatepicker #d="ngbDatepicker">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary fas fa-calendar" (click)="d.toggle()" type="button"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Asunto</label>
+                                <input type="text" autocomplete="off" class="form-control" placeholder="Asunto" required name="Asunto" #Asunto="ngModel" [(ngModel)]="ModeloCasos.Asunto">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Mensaje</label>
+                                <textarea class="form-control" rows="3" placeholder="Mensaje" required name="Mensaje" #Mensaje="ngModel" [(ngModel)]="ModeloCasos.Mensaje"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label for="InputFile">Adjuntar Documento</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                                        <label class="custom-file-label" for="exampleInputFile">Buscar Archivo</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="guardarCaso()">Guardar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
